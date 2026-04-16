@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Rent and Ride</title>
+    <link rel="stylesheet" href="./static/style.css" />
+
+    <!-- ============Favicon==================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./static/favicon_io/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/favicon_io/favicon-16x16.png" />
+    <!-- Link to Android Chrome icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./static/favicon_io/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="./static/favicon_io/android-chrome-512x512.png" />
+
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- LINK Fontawsome -->
+    <script src="https://kit.fontawesome.com/def00d5f6e.js" crossorigin="anonymous"></script>
+    <!-- LINK MATERIAL SYMBOLS -->
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- LINK Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Waiting+for+the+Sunrise&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!--===============================================================================================================
+==============================================      Navigation Bar     ----------------------------------------------
+==================================================================================================================-->
+
+    <div class="menu">
+        <a href="#header">
+            <img src="./static/Images/Nav Image.png" alt="logo" class="logo">
+        </a>
+
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="cont1" id="navLinks">
+            <a href="#header" class="link">
+                <span class="material-symbols-rounded link-icon">home</span>
+                <span class="link-title">Home</span>
+            </a>
+
+            <a href="#products" class="link">
+                <span class="material-symbols-rounded link-icon">car_rental</span>
+                <span class="link-title">Rental Cars</span>
+            </a>
+
+            <a href="#about" class="link">
+                <span class="material-symbols-rounded link-icon">settings_accessibility</span>
+                <span class="link-title">About Us</span>
+            </a>
+
+            <a href="#contact" class="link">
+                <span class="material-symbols-rounded link-icon">connect_without_contact</span>
+                <span class="link-title">Contact</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="header">
+        <div class="header-text">
+            <h1>Take the <span>Wheel</span> & <span>Drive</span><br>toward your <span>Future!!</span><br>
+                <span class="typed-container" id="typed3"></span> today...
+            </h1>
+            <a href="#products" class="button">
+                <span class="material-symbols-rounded button-icon">car_rental</span><span> See Rental Cars.. </span>
+            </a>
+        </div>
+        <div class="header-img"></div>
+    </div>
+
+    <!--===============================================================================================================
+==============================================      Rental cars     ----------------------------------------------
+==================================================================================================================-->
+
+    <div id="products">
+        <h1 class="sub-title"><span>R</span>ental Cars</h1>
+        <div class="container fade-bottom-item" id="container"></div>
+
+        <!-- FORM OVERLAY -->
+        <div id="formOverlay" onclick="handleOverlayClick(event)">
+            <div class="form_main">
+                <div class="close-form" onclick="closeForm()">✖</div>
+                <p class="heading">Contact</p>
+                <div class="inputContainer">
+                    <svg class="inputIcon" width="13" height="13" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"
+                        fill="#000" stroke="#000" stroke-width="2">
+                        <g>
+                            <defs>
+                                <style>
+                                    .b {
+                                        fill: none;
+                                        stroke: #000;
+                                        stroke-linecap: round;
+                                        stroke-linejoin: round;
+                                    }
+                                </style>
+                            </defs>
+                            <path class="b"
+                                d="M8.4,36.1457s-.1939,1.511,0,2.2286c.1347,.4981,.264,1.3371,.78,1.3371h2.8971c.516,0,.6453-.8391,.78-1.3371,.1939-.7172,0-2.2286,0-2.2286" />
+                            <rect class="b" x="4.5" y="21.66" width="39" height="14.4857" rx="4.4571" ry="4.4571" />
+                            <path class="b"
+                                d="M35.1429,36.1457s-.1939,1.511,0,2.2286c.1347,.4981,.264,1.3371,.78,1.3371h2.8971c.516,0,.6453-.8391,.78-1.3371,.1939-.7172,0-2.2286,0-2.2286" />
+                            <circle class="b" cx="10.6286" cy="29.46" r="2.2286" />
+                            <path class="b"
+                                d="M8.9571,21.66l2.5629-10.0286c.438-1.7138,2.3534-3.3429,4.1229-3.3429h16.7143c1.7695,0,3.6849,1.6291,4.1229,3.3429l2.5629,10.0286" />
+                            <circle class="b" cx="37.3714" cy="29.46" r="2.2286" />
+                        </g>
+                    </svg>
+                    <input type="text" class="inputField" id="carname" readonly>
+                </div>
+                <div class="inputContainer">
+                    <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 20 20"
+                        fill="none">
+                        <path
+                            d="M14.3365 12.3466L14.0765 11.9195C13.9082 12.022 13.8158 12.2137 13.8405 12.4092C13.8651 12.6046 14.0022 12.7674 14.1907 12.8249L14.3365 12.3466ZM9.6634 12.3466L9.80923 12.8249C9.99769 12.7674 10.1348 12.6046 10.1595 12.4092C10.1841 12.2137 10.0917 12.022 9.92339 11.9195L9.6634 12.3466ZM4.06161 19.002L3.56544 18.9402L4.06161 19.002ZM19.9383 19.002L20.4345 18.9402L19.9383 19.002ZM16 8.5C16 9.94799 15.2309 11.2168 14.0765 11.9195L14.5965 12.7737C16.0365 11.8971 17 10.3113 17 8.5H16ZM12 4.5C14.2091 4.5 16 6.29086 16 8.5H17C17 5.73858 14.7614 3.5 12 3.5V4.5ZM7.99996 8.5C7.99996 6.29086 9.79082 4.5 12 4.5V3.5C9.23854 3.5 6.99996 5.73858 6.99996 8.5H7.99996ZM9.92339 11.9195C8.76904 11.2168 7.99996 9.948 7.99996 8.5H6.99996C6.99996 10.3113 7.96342 11.8971 9.40342 12.7737L9.92339 11.9195ZM9.51758 11.8683C6.36083 12.8309 3.98356 15.5804 3.56544 18.9402L4.55778 19.0637C4.92638 16.1018 7.02381 13.6742 9.80923 12.8249L9.51758 11.8683ZM3.56544 18.9402C3.45493 19.8282 4.19055 20.5 4.99996 20.5V19.5C4.70481 19.5 4.53188 19.2719 4.55778 19.0637L3.56544 18.9402ZM4.99996 20.5H19V19.5H4.99996V20.5ZM19 20.5C19.8094 20.5 20.545 19.8282 20.4345 18.9402L19.4421 19.0637C19.468 19.2719 19.2951 19.5 19 19.5V20.5ZM20.4345 18.9402C20.0164 15.5804 17.6391 12.8309 14.4823 11.8683L14.1907 12.8249C16.9761 13.6742 19.0735 16.1018 19.4421 19.0637L20.4345 18.9402Z"
+                            fill="#000" />
+                    </svg>
+                    <input type="text" class="inputField" id="username" placeholder="Enter Your Name">
+                </div>
+                <button id="formButton" onclick="sendToWhatsApp()">Send via Whatsapp <i
+                        class="fa-brands fa-whatsapp"></i></button>
+            </div>
+        </div>
+
+        <!-- IMAGE VIEWER -->
+        <div class="viewer-overlay fade-bottom-item" id="viewerOverlay">
+            <div class="viewer">
+                <span class="close" onclick="closeViewer()">✖</span>
+                <span class="nav prev" onclick="changeView(-1)">❮</span>
+                <img id="viewerImg">
+                <span class="nav next" onclick="changeView(1)">❯</span>
+                <div class="zoom-controls">
+                    <div class="zoom-btn" onclick="zoomOut()">--</div>
+                    <div class="zoom-btn" onclick="zoomIn()">+</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--===============================================================================================================
+==============================================      About us     ----------------------------------------------
+==================================================================================================================-->
+
+    <section id="about">
+        <div class="about-content">
+            <h1 class="sub-title"><span>A</span>bout Us</h1>
+
+            <div class="about-grid">
+                <div class="about-item fade-left-item">
+                    <span class="material-symbols-rounded about-icon">diversity_3</span>
+                    <h3>Direct Connection</h3>
+                    <p>We skip the robotic automated forms. By connecting with you directly on WhatsApp, we build a real
+                        person-to-person relationship to better understand your journey.</p>
+                </div>
+
+                <div class="about-item fade-left-item">
+                    <span class="material-symbols-rounded about-icon">payments</span>
+                    <h3>Flexible Negotiation</h3>
+                    <p>We believe in fairness. Because you chat with a real human, you have the freedom to negotiate
+                        prices and find a deal that fits your specific budget.</p>
+                </div>
+
+                <div class="about-item fade-right-item">
+                    <span class="material-symbols-rounded about-icon">verified</span>
+                    <h3>Prime Condition</h3>
+                    <p>Safety is our priority. Every vehicle in our fleet undergoes rigorous maintenance checks to
+                        ensure you drive away in a car that is as reliable as it is comfortable.</p>
+                </div>
+
+                <div class="about-item fade-right-item">
+                    <span class="material-symbols-rounded about-icon">directions_car</span>
+                    <h3>Diverse Fleet</h3>
+                    <p>From sleek city cars to rugged explorers, our wide range of models ensures you can choose the
+                        perfect vehicle tailored exactly to your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--===============================================================================================================
+==============================================      Contact Us     ----------------------------------------------
+==================================================================================================================-->
+    <section id="contact">
+        <div class="contact-container">
+            <h1 class="sub-title"><span>C</span>ontact <span>U</span>s</h1>
+
+            <div class="contact-sub-cont">
+                <div class="contact-left">
+                    <div class="contact-info">
+                        <p class="fade-left-item">
+                            <i class="fa-solid fa-envelope"></i> : partsgang1@gmail.com
+                        </p>
+                        <p class="fade-left-item">
+                            <i class="fa-solid fa-phone"></i> : +91 98317 22767
+                        </p>
+                    </div>
+
+                    <div class="social-icons fade-left-item">
+                        <a href="https://www.instagram.com/partsdriveindia"><i
+                                class="fab fa-instagram fa-beat-fade"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100091692639619"><i
+                                class="fa-brands fa-facebook-f fa-beat-fade"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=919831722767"><i
+                                class="fa-brands fa-whatsapp fa-beat-fade"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-right fade-right-item">
+                    <div class="e-card playing">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+
+                        <div class="card-content">
+                            <div class="infotop">
+                                <span class="role">Founder & CEO</span>
+                                <div class="name">Rent & Drive Admin</div>
+                                <p class="card-desc">Negotiate your journey directly with us for<br> the best personal
+                                    experience.</p>
+                            </div>
+
+                            <div class="owner-img-cont">
+                                <img src="./static/Images/owner.png" alt="Owner" class="owner-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--===============================================================================================================
+==============================================      Footer     ----------------------------------------------
+==================================================================================================================-->
+    <footer id="footer">
+        <div class="foot">
+            <div class="co co1 fade-bottom-item">
+                <div class="foot-logo">
+                    <img src="./static/images/footer img.png" alt="logo" class="flogo" />
+                </div>
+                <p class="foot-text">Company - Parts Drive India</p>
+                <br />
+                <a href="https://maps.app.goo.gl/n2HKtEWvzvoRJrg1A" target="_blank" class="foot-text"><i
+                        class="fa-solid fa-location-dot fa-beat-fade"></i> : Airport Rd, Aditya
+                    Avenue, Bairagarh,<br>&nbsp;&nbsp;&nbsp;&nbsp; Bhopal, Madhya Pradesh 462030</a><br /><br />
+                <a href="tel:+919831722767" class="foot-text"><i class="fa-solid fa-phone fa-beat-fade"></i> : +91 98317
+                    22767</a><br /><br />
+                <a href="https://mail.google.com/mail/?view=cm&to=partsgang1@gmail.com" target="_blank"><i
+                        class="fa-solid fa-envelope fa-beat-fade"></i> : partsgang1@gmail.com</a>
+            </div>
+
+            <div class="co co2 fade-bottom-item">
+                <h1>Pages</h1>
+                <ul class="foot-menu" id="sidemenu">
+                    <li><a href="#header"> : Home</a></li>
+                    <li><a href="./templates/pr.html"> : Products</a></li>
+                    <li><a href="#services"> : Services</a></li>
+                    <li><a href="#contact"> : Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="co co3 fade-bottom-item">
+                <h1>Links</h1>
+                <div class="links">
+                    <div class="flinks">
+                        <a href="https://www.facebook.com/profile.php?id=100091692639619" target="_blank"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                    <div class="flinks">
+                        <a href="https://www.instagram.com/partsdriveindia" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="flinks">
+                        <a href="https://api.whatsapp.com/send?phone=919831722767" target="_blank"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <a class="locate" target="_blank" href="https://maps.app.goo.gl/n2HKtEWvzvoRJrg1A"><i
+                        class="fa-solid fa-map-location-dot fa-beat-fade"></i> Locate
+                    us</a><br /><br />
+                <a class="locate" target="_blank"
+                    href="https://mail.google.com/mail/?view=cm&to=partsgang1@gmail.com"><i
+                        class="fa-solid fa-envelope-open fa-beat-fade"></i> Mail us</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>
+                Copyright © 2026 Rent and Drive India. All Rights Reserved.<br />
+                Designed with <i class="fa-solid fa-heart"></i> by
+                <a target="_blank" href="https://www.instagram.com/yashc.exe/?hl=en">
+                    <span> Natsu ⚆⚆ </span>
+                    <i class="fab fa-instagram fa-beat-fade"></i>
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <!--===============================================================================================================
+==============================================      Java Script     ----------------------------------------------
+==================================================================================================================-->
+    <script src="./static/script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var typed3 = new Typed('#typed3', {
+                strings: ['Rent', 'and Ride'],
+                typeSpeed: 50,
+                backSpeed: 70,
+                smartBackspace: true,
+                loop: true,
+                cursorChar: '•'
+            });
+        });
+    </script>
+    <!-- ==========================================================Heading Animation========================================================== -->
+
+    <script>
+        document.addEventListener("scroll", function () {
+            var elements = document.querySelectorAll(".sub-title");
+
+            elements.forEach(function (element) {
+                var position = element.getBoundingClientRect();
+
+                // Check if the element is in the viewport (even partially)
+                if (position.top < window.innerHeight && position.bottom >= 0) {
+                    // Add the class that triggers the animation
+                    element.classList.add("visible");
+                } else {
+                    // Remove the class if you want the animation to re-trigger when scrolling back
+                    element.classList.remove("visible");
+                }
+            });
+        });
+    </script>
+
+    <!-- ==========================================================Containers Animation========================================================== -->
+
+    <script>
+        document.addEventListener("scroll", function () {
+            // Select all elements that should fade in
+            var fadeElements = document.querySelectorAll(
+                ".fade-left-item, .fade-right-item, .fade-bottom-item"
+            );
+
+            fadeElements.forEach(function (element) {
+                var rect = element.getBoundingClientRect();
+
+                // Check if the element is in the viewport (even partially)
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    element.classList.add("active");
+                } else {
+                    // Remove the active class if you want the animation to re-trigger on scroll
+                    element.classList.remove("active");
+                }
+            });
+        });
+    </script>
+</body>
