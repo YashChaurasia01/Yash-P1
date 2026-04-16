@@ -1701,7 +1701,9 @@ PRODUCT TITLE
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 70px;
+        width: 100%;
+        padding: 0;
+        gap: 60px;
     }
 
     .contact-left {
@@ -1712,13 +1714,18 @@ PRODUCT TITLE
     }
 
     #contact {
-        padding: 2vh 2vh;
+        padding: 2vh 5px;
     }
 
+
+
     .e-card {
-        height: 270px;
-        width: 98%;
-        max-width: 380px;
+        height: auto;       /* Let it grow vertically if needed */
+        min-height: 270px;
+        width: calc(100% - 10px); /* Fill the width minus a tiny margin */
+        max-width: 500px;   /* Allow it to be wider on large phones */
+        margin: 0 auto;
+        display: block;
     }
 
     .wave {
@@ -1730,6 +1737,8 @@ PRODUCT TITLE
 
     .card-content {
         padding: 0 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .infotop .role {
