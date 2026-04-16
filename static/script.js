@@ -1,10 +1,5 @@
 /* ============================================================
        DATA — edit your products here
-       images: array of paths — use local paths like "./static/product images/ABS Sensor.jpg"
-       title: shown as the card heading
-       desc: first line of description
-       subDesc: (optional) second line — remove if not needed
-       stats: pentagon values (value 0–10, actual = label shown on chart)
     ============================================================ */
 const data = [
   {
@@ -20,15 +15,15 @@ const data = [
     subDesc: "Compatible with most makes & models",
     stats: [
       { label: "SPD", value: 10, actual: "250km/h" },
-      { label: "ACC", value: 8, actual: "3.2s" },
-      { label: "PWR", value: 9, actual: "500HP" },
-      { label: "CTRL", value: 7, actual: "Stable" },
-      { label: "BRK", value: 6, actual: "38m" },
+      { label: "ACC", value: 8,  actual: "3.2s"    },
+      { label: "PWR", value: 9,  actual: "500HP"   },
+      { label: "CTRL",value: 7,  actual: "Stable"  },
+      { label: "BRK", value: 6,  actual: "38m"     },
     ],
   },
   {
-      images: [
-        "./static/Images/SUN-1.jpg",
+    images: [
+      "./static/Images/SUN-1.jpg",
       "./static/Images/SUN.jpg"
     ],
     title: "AC Filter",
@@ -36,16 +31,16 @@ const data = [
     subDesc: "HEPA-grade filtration",
     stats: [
       { label: "SPD", value: 7, actual: "200km/h" },
-      { label: "ACC", value: 6, actual: "4.1s" },
-      { label: "PWR", value: 8, actual: "420HP" },
-      { label: "CTRL", value: 9, actual: "Firm" },
-      { label: "BRK", value: 8, actual: "34m" },
+      { label: "ACC", value: 6, actual: "4.1s"    },
+      { label: "PWR", value: 8, actual: "420HP"   },
+      { label: "CTRL",value: 9, actual: "Firm"    },
+      { label: "BRK", value: 8, actual: "34m"     },
     ],
   },
   {
     images: [
-        "./static/Images/SP2.jpg",
-        "./static/Images/SP1.jpg",
+      "./static/Images/SP2.jpg",
+      "./static/Images/SP1.jpg",
       "./static/Images/SP3.jpg",
       "./static/Images/SUN-1.jpg"
     ],
@@ -54,15 +49,15 @@ const data = [
     subDesc: "HEPA-grade filtration",
     stats: [
       { label: "SPD", value: 7, actual: "200km/h" },
-      { label: "ACC", value: 6, actual: "4.1s" },
-      { label: "PWR", value: 8, actual: "420HP" },
-      { label: "CTRL", value: 9, actual: "Firm" },
-      { label: "BRK", value: 8, actual: "34m" },
+      { label: "ACC", value: 6, actual: "4.1s"    },
+      { label: "PWR", value: 8, actual: "420HP"   },
+      { label: "CTRL",value: 9, actual: "Firm"    },
+      { label: "BRK", value: 8, actual: "34m"     },
     ],
   },
   {
     images: [
-        "./static/Images/SP3.jpg",
+      "./static/Images/SP3.jpg",
       "./static/Images/SP1.jpg",
       "./static/Images/SP2.jpg",
       "./static/Images/SUN-1.jpg",
@@ -83,77 +78,76 @@ const data = [
 const container = document.getElementById("container");
 
 /* ===== RADAR / PENTAGON ===== */
+/* Returns a "replay" function — call it any time to restart the animation */
 function createRadar(svg, stats) {
-  const cx = 100,
-    cy = 100,
-    maxRadius = 60;
-  function angle(i) {
-    return -Math.PI / 2 + (2 * Math.PI * i) / stats.length;
-  }
-  function point(a, r) {
-    return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r };
-  }
+  const cx = 100, cy = 100, maxRadius = 60;
 
+  function angle(i) { return -Math.PI / 2 + (2 * Math.PI * i) / stats.length; }
+  function point(a, r) { return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r }; }
+
+  /* grid rings */
   for (let l = 1; l <= 5; l++) {
-    let r = (l / 5) * maxRadius,
-      pts = "";
-    stats.forEach((_, i) => {
-      let p = point(angle(i), r);
-      pts += `${p.x},${p.y} `;
-    });
-    let poly = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "polygon",
-    );
+    let r = (l / 5) * maxRadius, pts = "";
+    stats.forEach((_, i) => { let p = point(angle(i), r); pts += `${p.x},${p.y} `; });
+    let poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     poly.setAttribute("points", pts);
     poly.setAttribute("class", "grid-level");
     svg.appendChild(poly);
   }
 
+  /* axes + labels */
   stats.forEach((s, i) => {
     let end = point(angle(i), maxRadius);
     let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", cx);
-    line.setAttribute("y1", cy);
-    line.setAttribute("x2", end.x);
-    line.setAttribute("y2", end.y);
+    line.setAttribute("x1", cx); line.setAttribute("y1", cy);
+    line.setAttribute("x2", end.x); line.setAttribute("y2", end.y);
     line.setAttribute("class", "axis-line");
     svg.appendChild(line);
 
     let t = document.createElementNS("http://www.w3.org/2000/svg", "text");
     let lp = point(angle(i), maxRadius + 10);
-    t.setAttribute("x", lp.x);
-    t.setAttribute("y", lp.y);
+    t.setAttribute("x", lp.x); t.setAttribute("y", lp.y);
     t.textContent = s.label;
     t.setAttribute("class", "stat-label");
     svg.appendChild(t);
   });
 
-  const area = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "polygon",
-  );
+  /* filled area */
+  const area = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
   area.setAttribute("fill", "rgba(255, 123, 0, 0.3)");
   svg.appendChild(area);
 
-  const points = [],
-    texts = [];
+  /* dots + value texts */
+  const points = [], texts = [];
   stats.forEach(() => {
     let c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     c.setAttribute("r", 3);
     c.setAttribute("class", "stat-point");
     svg.appendChild(c);
     points.push(c);
+
     let txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
     txt.setAttribute("class", "value-text");
     svg.appendChild(txt);
     texts.push(txt);
   });
 
+  /* reset everything back to origin (called before every replay) */
+  function reset() {
+    let str = "";
+    stats.forEach((_, idx) => {
+      points[idx].setAttribute("cx", cx);
+      points[idx].setAttribute("cy", cy);
+      texts[idx].textContent = "";
+      str += `${cx},${cy} `;
+    });
+    area.setAttribute("points", str);
+  }
+
   function update(i, prog) {
     let str = "";
     stats.forEach((s, idx) => {
-      let p = idx < i ? 1 : idx === i ? prog : 0;
+      let p = (idx < i) ? 1 : (idx === i ? prog : 0);
       let r = (s.value / 10) * maxRadius * p;
       let pt = point(angle(idx), r);
       points[idx].setAttribute("cx", pt.x);
@@ -166,21 +160,40 @@ function createRadar(svg, stats) {
     area.setAttribute("points", str);
   }
 
+  let animId = null; /* track current rAF so we can cancel on re-entry */
+
   function animate(i) {
     let start = performance.now();
     function frame(t) {
       let k = Math.min((t - start) / 400, 1);
       let ease = 1 - Math.pow(1 - k, 3);
       update(i, ease);
-      if (k < 1) requestAnimationFrame(frame);
-      else if (i + 1 < stats.length) animate(i + 1);
+      if (k < 1) { animId = requestAnimationFrame(frame); }
+      else if (i + 1 < stats.length) { animate(i + 1); }
+      else { animId = null; }
     }
-    requestAnimationFrame(frame);
+    animId = requestAnimationFrame(frame);
   }
-  animate(0);
+
+  /* ── PUBLIC: replay from scratch ── */
+  function replay() {
+    if (animId !== null) { cancelAnimationFrame(animId); animId = null; }
+    reset();
+    animate(0);
+  }
+
+  /* play once on creation */
+  replay();
+
+  /* return the replay function so the scroll observer can call it */
+  return replay;
 }
 
 /* ===== BUILD CARDS ===== */
+
+/* We collect { radarBox element → replay fn } so the scroll handler can find them */
+const radarReplayMap = new Map();
+
 data.forEach((item) => {
   let card = document.createElement("div");
   card.className = "card";
@@ -208,10 +221,7 @@ data.forEach((item) => {
 
     let dot = document.createElement("div");
     dot.className = "dot";
-    dot.onclick = () => {
-      index = i;
-      updateSlider();
-    };
+    dot.onclick = () => { index = i; updateSlider(); };
     dotsDiv.appendChild(dot);
   });
 
@@ -226,7 +236,7 @@ data.forEach((item) => {
       let diff = Math.abs(i - index);
       let size = 12 - diff * 2;
       if (size < 4) size = 4;
-      dots[i].style.width = size + "px";
+      dots[i].style.width  = size + "px";
       dots[i].style.height = size + "px";
       dots[i].classList.toggle("active", i === index);
     }
@@ -235,18 +245,12 @@ data.forEach((item) => {
   let prev = document.createElement("div");
   prev.className = "card-nav card-prev";
   prev.innerHTML = "❮";
-  prev.onclick = () => {
-    index = (index - 1 + item.images.length) % item.images.length;
-    updateSlider();
-  };
+  prev.onclick = () => { index = (index - 1 + item.images.length) % item.images.length; updateSlider(); };
 
   let next = document.createElement("div");
   next.className = "card-nav card-next";
   next.innerHTML = "❯";
-  next.onclick = () => {
-    index = (index + 1) % item.images.length;
-    updateSlider();
-  };
+  next.onclick = () => { index = (index + 1) % item.images.length; updateSlider(); };
 
   slider.appendChild(slides);
   slider.appendChild(prev);
@@ -256,20 +260,24 @@ data.forEach((item) => {
   /* --- text details --- */
   let details = document.createElement("div");
   details.className = "details";
-  /* ── TO ADD MORE DESCRIPTION LINES: duplicate the <p> below ── */
   details.innerHTML = `
-        <h4>${item.title}</h4>
-        <p>${item.desc}</p>
-        <p class="desc-sub">${item.subDesc || ""}</p>
-      `;
+    <h4>${item.title}</h4>
+    <p>${item.desc}</p>
+    <p class="desc-sub">${item.subDesc || ""}</p>
+  `;
 
   /* --- radar --- */
   let radarBox = document.createElement("div");
   radarBox.className = "radar-box";
+
   let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("viewBox", "0 0 200 200");
   radarBox.appendChild(svg);
-  createRadar(svg, item.stats);
+
+  const replay = createRadar(svg, item.stats);
+
+  /* store the replay fn keyed to the radarBox element */
+  radarReplayMap.set(radarBox, { replay, inView: false });
 
   /* --- enquiry button --- */
   let btnWrap = document.createElement("div");
@@ -289,6 +297,45 @@ data.forEach((item) => {
   container.appendChild(card);
 });
 
+/* ===== SCROLL HANDLER — sub-title + fade items + pentagon ===== */
+document.addEventListener("scroll", function () {
+
+  /* 1. sub-title tracking-expand animation */
+  document.querySelectorAll(".sub-title").forEach(function (el) {
+    const pos = el.getBoundingClientRect();
+    if (pos.top < window.innerHeight && pos.bottom >= 0) {
+      el.classList.add("visible");
+    } else {
+      el.classList.remove("visible");
+    }
+  });
+
+  /* 2. fade-left / fade-right / fade-bottom */
+  document.querySelectorAll(".fade-left-item, .fade-right-item, .fade-bottom-item").forEach(function (el) {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom >= 0) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+
+  /* 3. pentagon replay — triggers every time radarBox enters the viewport */
+  radarReplayMap.forEach(function (state, radarBox) {
+    const rect = radarBox.getBoundingClientRect();
+    const visible = rect.top < window.innerHeight && rect.bottom >= 0;
+
+    if (visible && !state.inView) {
+      /* just entered the viewport → replay */
+      state.replay();
+      state.inView = true;
+    } else if (!visible) {
+      /* left the viewport → reset flag so next entry re-triggers */
+      state.inView = false;
+    }
+  });
+});
+
 /* ===== FORM ===== */
 function openForm(title) {
   document.getElementById("carname").value = title;
@@ -303,22 +350,18 @@ function handleOverlayClick(e) {
 }
 function sendToWhatsApp() {
   const name = document.getElementById("username").value;
-  const car = document.getElementById("carname").value;
-  if (!name) {
-    alert("Enter name");
-    return;
-  }
+  const car  = document.getElementById("carname").value;
+  if (!name) { alert("Enter name"); return; }
   let msg = `*Car Enquiry Request!*%0AName: ${encodeURIComponent(name)}%0ACar Name: ${encodeURIComponent(car)}`;
   window.open(`https://api.whatsapp.com/send?phone=+918982611211&text=${msg}`);
 }
 
 /* ===== VIEWER ===== */
-let viewerIndex = 0,
-  viewerImages = [],
-  scale = 1;
+let viewerIndex = 0, viewerImages = [], scale = 1;
+
 function openViewer(images, index) {
   viewerImages = images;
-  viewerIndex = index;
+  viewerIndex  = index;
   scale = 1;
   document.getElementById("viewerOverlay").style.display = "flex";
   showViewer();
@@ -336,47 +379,35 @@ function changeView(dir) {
 function closeViewer() {
   document.getElementById("viewerOverlay").style.display = "none";
 }
-function zoomIn() {
-  scale = Math.min(scale + 0.3, 5);
-  showViewer();
-}
-function zoomOut() {
-  scale = Math.max(scale - 0.3, 1);
-  showViewer();
-}
-// ============================================OPEN CLOSE HAM MENU=================================
+function zoomIn()  { scale = Math.min(scale + 0.3, 5); showViewer(); }
+function zoomOut() { scale = Math.max(scale - 0.3, 1); showViewer(); }
 
+/* ===== HAMBURGER MENU ===== */
 function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    const icon = document.querySelector(".menu-icon i");
-    
-    // Toggle the active class
-    nav.classList.toggle("active");
-    
-    // Smoothly swap the icon
-    if (nav.classList.contains("active")) {
-        icon.classList.replace("fa-bars", "fa-xmark");
-    } else {
-        icon.classList.replace("fa-xmark", "fa-bars");
-    }
+  const nav  = document.getElementById("navLinks");
+  const icon = document.querySelector(".menu-icon i");
+  nav.classList.toggle("active");
+  if (nav.classList.contains("active")) {
+    icon.classList.replace("fa-bars", "fa-xmark");
+  } else {
+    icon.classList.replace("fa-xmark", "fa-bars");
+  }
 }
 
-// Close menu when clicking a link
 document.querySelectorAll('.link').forEach(link => {
-    link.addEventListener('click', () => {
-        const nav = document.getElementById("navLinks");
-        const icon = document.querySelector(".menu-icon i");
-        nav.classList.remove("active");
-        icon.classList.replace("fa-xmark", "fa-bars");
-    });
+  link.addEventListener('click', () => {
+    const nav  = document.getElementById("navLinks");
+    const icon = document.querySelector(".menu-icon i");
+    nav.classList.remove("active");
+    icon.classList.replace("fa-xmark", "fa-bars");
+  });
 });
 
-// Close menu if user clicks anywhere else on the page
 window.addEventListener('click', (e) => {
-    const nav = document.getElementById("navLinks");
-    const menuIcon = document.querySelector(".menu-icon");
-    if (!nav.contains(e.target) && !menuIcon.contains(e.target)) {
-        nav.classList.remove("active");
-        document.querySelector(".menu-icon i").classList.replace("fa-xmark", "fa-bars");
-    }
+  const nav      = document.getElementById("navLinks");
+  const menuIcon = document.querySelector(".menu-icon");
+  if (!nav.contains(e.target) && !menuIcon.contains(e.target)) {
+    nav.classList.remove("active");
+    document.querySelector(".menu-icon i").classList.replace("fa-xmark", "fa-bars");
+  }
 });
