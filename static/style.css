@@ -1327,7 +1327,7 @@ PRODUCT TITLE
 }
 
 /* ===============================================================================================================
-==============================================      Contact   Us    ----------------------------------------------
+==============================================      Footer    ----------------------------------------------
 ==================================================================================================================*/
 
 
@@ -1589,13 +1589,12 @@ PRODUCT TITLE
     .header-text {
         /* 1. Reset alignment to the left */
         text-align: left;
-
         /* 2. Positioning */
         margin-left: 3%;
         /* Small gap from the left edge */
         margin-right: auto;
         /* Pushes the container to the left */
-        margin-top: 80%;
+        margin-top: 70%;
         /* Adjust this based on your background image */
 
         /* 3. Width Control */
@@ -1611,7 +1610,7 @@ PRODUCT TITLE
 
     .header-text h1 {
         font-size: 36px;
-        line-height: 2;
+        line-height: 1.4;
     }
 
     .button {
@@ -1729,6 +1728,10 @@ PRODUCT TITLE
     #about {
         padding: 7vh 2vh;
     }
+
+    .about-grid {
+        /* This forces everything into a single vertical column */
+        grid-template-columns: 1fr; 
 
     .contact-sub-cont {
         display: flex;
