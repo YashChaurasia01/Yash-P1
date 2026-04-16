@@ -1619,8 +1619,8 @@ PRODUCT TITLE
         align-items: center;
         justify-content: center;
         /* Remove absolute for easier centering */
-        top: 25vh;
-        left: 10px;
+        top: 27vh;
+        left: 7px;
         margin: 30px auto 0;
         /* Center button */
         width: 50%;
@@ -1730,8 +1730,24 @@ PRODUCT TITLE
     }
 
     .about-grid {
-        /* This forces everything into a single vertical column */
+        /* This forces all items into a single vertical column */
         grid-template-columns: 1fr; 
+        
+        /* Ensures the grid expands to fit the stacked content */
+        height: auto; 
+        
+        /* Optional: Center items and adjust spacing for mobile */
+        gap: 25px; 
+        justify-items: center; 
+        margin-top: 30px;
+    }
+
+    /* Make sure individual items look good stacked */
+    .about-grid > div {
+        width: 100%;
+        max-width: 350px; /* Prevents cards from looking too wide on large phones */
+        text-align: center;
+    }
 
     .contact-sub-cont {
         display: flex;
