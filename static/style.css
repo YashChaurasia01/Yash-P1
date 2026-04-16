@@ -1711,6 +1711,10 @@ PRODUCT TITLE
         justify-content: center;
     }
 
+    #contact {
+        padding: 2vh 2vh;
+    }
+
     .e-card {
         height: 270px;
         width: 98%;
