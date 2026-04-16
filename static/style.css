@@ -1620,7 +1620,7 @@ PRODUCT TITLE
         align-items: center;
         gap: 40px;
         overflow-x: visible;
-        padding: 15px 5px;
+        padding: 25px 5px;
         scroll-snap-type: none;
         height: auto;
     }
