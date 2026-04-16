@@ -165,7 +165,7 @@ function createRadar(svg, stats) {
   function animate(i) {
     let start = performance.now();
     function frame(t) {
-      let k = Math.min((t - start) / 400, 1);
+      let k = Math.min((t - start) / 200, 1);
       let ease = 1 - Math.pow(1 - k, 3);
       update(i, ease);
       if (k < 1) { animId = requestAnimationFrame(frame); }
