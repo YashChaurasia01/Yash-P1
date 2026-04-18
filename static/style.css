@@ -1714,14 +1714,14 @@ PRODUCT TITLE
     }
 
     #contact {
-        padding: 2vh 5px;
+        padding: 2vh 1vh;
     }
 
 
 
     .e-card {
         height: 270px;
-        width: 95%;
+        width: 98%;
         max-width: 380px;
     }
 
