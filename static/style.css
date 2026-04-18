@@ -1720,14 +1720,12 @@ PRODUCT TITLE
 
 
     .e-card {
-        height: auto;       /* Let it grow vertically if needed */
-        min-height: 270px;
-        width: calc(100% - 10px); /* Fill the width minus a tiny margin */
-        max-width: 500px;   /* Allow it to be wider on large phones */
-        margin: 0 auto;
-        display: block;
+        height: 270px;
+        width: 95%;
+        max-width: 380px;
     }
 
+    /* Manual Hex Waves with Transparency */
     .wave {
         width: 300px;
         height: 500px;
@@ -1735,11 +1733,11 @@ PRODUCT TITLE
         top: -70%;
     }
 
+    /* Content over waves */
     .card-content {
         padding: 0 10px;
-        width: 100%;
-        box-sizing: border-box;
     }
+
 
     .infotop .role {
         font-size: 24px;
@@ -1752,7 +1750,7 @@ PRODUCT TITLE
     }
 
     .card-desc {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .owner-img {
@@ -1799,9 +1797,6 @@ PRODUCT TITLE
         font-size: 14px;
     }
 
-    #contact {
-        padding: 0vh 2vh;
-    }
 }
 
 /* ==========================================================================
